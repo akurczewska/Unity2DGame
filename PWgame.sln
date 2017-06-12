@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2015
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PWgame", "PWgame.csproj", "{A86F3CDD-A49F-4F8E-B658-E0ABFAE82DEB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PWgame.Editor", "PWgame.Editor.csproj", "{FAD77921-C389-B798-890B-413417130A58}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{A86F3CDD-A49F-4F8E-B658-E0ABFAE82DEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A86F3CDD-A49F-4F8E-B658-E0ABFAE82DEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A86F3CDD-A49F-4F8E-B658-E0ABFAE82DEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAD77921-C389-B798-890B-413417130A58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAD77921-C389-B798-890B-413417130A58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAD77921-C389-B798-890B-413417130A58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAD77921-C389-B798-890B-413417130A58}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
