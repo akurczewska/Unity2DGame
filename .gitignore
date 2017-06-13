@@ -1,0 +1,15 @@
+# Build Folders 
+obj
+Library
+Temp
+_ReSharper.EasyPlatformerPackage-csharp
+
+# Ignore meta files 
+*.meta
+
+# IDE Solution Files
+*.pidb
+*.sln
+*.csproj
+*.unityproj
+*.suo
