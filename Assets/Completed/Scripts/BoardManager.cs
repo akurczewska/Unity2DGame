@@ -26,10 +26,10 @@ namespace Completed
 		}
 		
 		
-		public int columns = 8; 										//Number of columns in our game board.
-		public int rows = 8;											//Number of rows in our game board.
-		public Count wallCount = new Count (5, 9);						//Lower and upper limit for our random number of walls per level.
-		public Count quietCount = new Count (1, 5);						//Lower and upper limit for our random number of food items per level.
+		public int columns = 15; 										//Number of columns in our game board.
+		public int rows = 15;											//Number of rows in our game board.
+		public Count wallCount = new Count (50, 70);						//Lower and upper limit for our random number of walls per level.
+		public Count quietCount = new Count (5, 10);						//Lower and upper limit for our random number of food items per level.
 		public GameObject exit;											//Prefab to spawn for exit.
 		public GameObject[] floorTiles;									//Array of floor prefabs.
 		public GameObject[] wallTiles;									//Array of wall prefabs.
@@ -49,13 +49,21 @@ namespace Completed
 			gridPositions.Clear ();
 			
 			//Loop through x axis (columns).
-			for(int x = 1; x < columns-1; x++)
+			for(int x = 0; x < columns; x++)
 			{
 				//Within each column, loop through y axis (rows).
-				for(int y = 1; y < rows-1; y++)
+				for(int y = 0; y < rows; y++)
 				{
 					//At each index add a new Vector3 to our list with the x and y coordinates of that position.
-					gridPositions.Add (new Vector3(x, y, 0f));
+                    if( (x == 0 && y == 0) || (x == columns-1 && y == rows-1) )
+                    {
+                        //place for player and flag
+                    }
+                    else
+                    {
+                        gridPositions.Add(new Vector3(x, y, 0f));
+                    }
+					
 				}
 			}
 		}
