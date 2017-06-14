@@ -29,7 +29,7 @@ namespace Completed
 		public int columns = 15; 										//Number of columns in our game board.
 		public int rows = 15;											//Number of rows in our game board.
 		public Count wallCount = new Count (50, 70);						//Lower and upper limit for our random number of walls per level.
-		public Count quietCount = new Count (5, 10);						//Lower and upper limit for our random number of food items per level.
+		public Count quietCount = new Count (5, 10);						//Lower and upper limit for our random number of quiet items per level.
 		public GameObject exit;											//Prefab to spawn for exit.
 		public GameObject[] floorTiles;									//Array of floor prefabs.
 		public GameObject[] wallTiles;									//Array of wall prefabs.
@@ -149,7 +149,7 @@ namespace Completed
 			//Instantiate a random number of wall tiles based on minimum and maximum, at randomized positions.
 			LayoutObjectAtRandom (wallTiles, wallCount.minimum, wallCount.maximum);
 			
-			//Instantiate a random number of food tiles based on minimum and maximum, at randomized positions.
+			//Instantiate a random number of quiet tiles based on minimum and maximum, at randomized positions.
 			LayoutObjectAtRandom (beQuiet, quietCount.minimum, quietCount.maximum);
 			
 			//Determine number of enemies based on current level number, based on a logarithmic progression
