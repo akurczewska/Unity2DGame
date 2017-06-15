@@ -61,9 +61,32 @@ namespace Completed
 			//These values allow us to choose between the cardinal directions: up, down, left and right.
 			int xDir = 0;
 			int yDir = 0;
-			
-			//If the difference in positions is approximately zero (Epsilon) do the following:
-			if(Mathf.Abs (target.position.x - transform.position.x) < float.Epsilon)
+
+
+            ///////////////////////////
+
+            if(GameManager.instance.playerNoisePoints > 20)
+            {
+                if(Mathf.Abs(target.position.x - transform.position.x) < 2)
+                {
+                    //GAME OVER//
+                    //Call the PlaySingle function of SoundManager and pass it the gameOverSound as the audio clip to play.
+               //     SoundManager.instance.PlaySingle(gameOverSound);
+
+                    //Stop the background music.
+                    SoundManager.instance.musicSource.Stop();
+
+                    //Call the GameOver function of GameManager.
+                    GameManager.instance.GameOver();
+                }
+            }
+
+
+
+            //////////////////////////
+
+            //If the difference in positions is approximately zero (Epsilon) do the following:
+            if (Mathf.Abs (target.position.x - transform.position.x) < float.Epsilon)
 				
 				//If the y coordinate of the target's (player) position is greater than the y coordinate of this enemy's position set y direction 1 (to move up). If not, set it to -1 (to move down).
 				yDir = target.position.y > transform.position.y ? 1 : -1;

@@ -33,7 +33,6 @@ namespace Completed
 		public GameObject exit;											//Prefab to spawn for exit.
 		public GameObject[] floorTiles;									//Array of floor prefabs.
 		public GameObject[] wallTiles;									//Array of wall prefabs.
-		//public GameObject[] foodTiles;									//Array of food prefabs.
         public GameObject[] beQuiet;
 		public GameObject[] enemyTiles;									//Array of enemy prefabs.
 		public GameObject[] outerWallTiles;								//Array of outer tile prefabs.

@@ -37,9 +37,9 @@ namespace Completed
 
             //Get the current noise point total stored in GameManager.instance between levels.
             noise = 0;      // GameManager.instance.playerNoisePoints;
-			
-			//Set the noiseText to reflect the current player noise total.
-			noiseText.text = "Noise: " + noise;
+            GameManager.instance.playerNoisePoints = noise;
+            //Set the noiseText to reflect the current player noise total.
+            noiseText.text = "Noise: " + noise;
 			
 			//Call the Start function of the MovingObject base class.
 			base.Start ();
@@ -133,9 +133,9 @@ namespace Completed
 		{
 			//Every time player moves, subtract from noise points total.
 			noise++;
-			
-			//Update noise text display to reflect current score.
-			noiseText.text = "Noise: " + noise;
+            GameManager.instance.playerNoisePoints = noise;
+            //Update noise text display to reflect current score.
+            noiseText.text = "Noise: " + noise;
 			
 			//Call the AttemptMove method of the base class, passing in the component T (in this case Wall) and x and y direction to move.
 			base.AttemptMove <T> (xDir, yDir);
@@ -149,7 +149,8 @@ namespace Completed
 				//Call RandomizeSfx of SoundManager to play the move sound, passing in two audio clips to choose from.
 				SoundManager.instance.RandomizeSfx (moveSound1, moveSound2);
 			}
-			
+
+
 			//Since the player has moved and earn noise points, check if the game has ended.
 			CheckIfGameOver ();
 			
@@ -193,9 +194,9 @@ namespace Completed
 				noise -= quietPoints;
                 if (noise < 0)
                     noise = 0;
-				
-				//Update noiseText to represent current total and notify player that they gained points
-				noiseText.text = "-" + quietPoints + " Noise: " + noise;
+                GameManager.instance.playerNoisePoints = noise;
+                //Update noiseText to represent current total and notify player that they gained points
+                noiseText.text = "-" + quietPoints + " Noise: " + noise;
 				
 				//Call the RandomizeSfx function of SoundManager and pass in two eating sounds to choose between to play the eating sound effect.
 				SoundManager.instance.RandomizeSfx (eatSound1, eatSound2);
