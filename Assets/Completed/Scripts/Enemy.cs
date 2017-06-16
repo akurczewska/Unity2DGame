@@ -63,27 +63,7 @@ namespace Completed
 			int yDir = 0;
 
 
-            ///////////////////////////
-
-            if(GameManager.instance.playerNoisePoints > 20)
-            {
-                if(Mathf.Abs(target.position.x - transform.position.x) < 2)
-                {
-                    //GAME OVER//
-                    //Call the PlaySingle function of SoundManager and pass it the gameOverSound as the audio clip to play.
-               //     SoundManager.instance.PlaySingle(gameOverSound);
-
-                    //Stop the background music.
-                    SoundManager.instance.musicSource.Stop();
-
-                    //Call the GameOver function of GameManager.
-                    GameManager.instance.GameOver();
-                }
-            }
-
-
-
-            //////////////////////////
+            
 
             //If the difference in positions is approximately zero (Epsilon) do the following:
             if (Mathf.Abs (target.position.x - transform.position.x) < float.Epsilon)
@@ -98,12 +78,83 @@ namespace Completed
 			
 			//Call the AttemptMove function and pass in the generic parameter Player, because Enemy is moving and expecting to potentially encounter a Player
 			AttemptMove <Player> (xDir, yDir);
-		}
-		
-		
-		//OnCantMove is called if Enemy attempts to move into a space occupied by a Player, it overrides the OnCantMove function of MovingObject 
-		//and takes a generic parameter T which we use to pass in the component we expect to encounter, in this case Player
-		protected override void OnCantMove <T> (T component)
+
+
+
+
+            ///////////////////////////
+
+            
+
+
+
+
+
+
+
+            if (GameManager.instance.playerNoisePoints > 20)
+            {
+                    RaycastHit2D hit;
+                int x = 0, y = 0;
+                if (target.position.x > transform.position.x)
+                    x = 1;
+                else if (target.position.x < transform.position.x)
+                    x = -1;
+                else
+                    x = 0;
+
+                if (target.position.y > transform.position.y)
+                    y = 1;
+                else if (target.position.y < transform.position.y)
+                    y = -1;
+                else
+                    y = 0;
+
+                bool canSee = checkMove(x, y, out hit);
+          
+                if (Mathf.Abs(target.position.x - transform.position.x) <= 2 && Mathf.Abs(target.position.y - transform.position.y) <= 2 && canSee)
+                {
+                    //GAME OVER//
+                    //Call the PlaySingle function of SoundManager and pass it the gameOverSound as the audio clip to play.
+                    //     SoundManager.instance.PlaySingle(gameOverSound);
+
+                    //Stop the background music.
+                    SoundManager.instance.musicSource.Stop();
+
+                    //Call the GameOver function of GameManager.
+                    GameManager.instance.GameOver();
+                }
+                    
+            }
+            else if (GameManager.instance.playerNoisePoints > 10)
+            {
+
+
+                    ///tuTOSAMO!!!!
+                if (Mathf.Abs(target.position.x - transform.position.x) <= 1 && Mathf.Abs(target.position.y - transform.position.y) <= 1)
+                {
+                    //GAME OVER//
+                    //Call the PlaySingle function of SoundManager and pass it the gameOverSound as the audio clip to play.
+                    //     SoundManager.instance.PlaySingle(gameOverSound);
+
+                    //Stop the background music.
+                    SoundManager.instance.musicSource.Stop();
+
+                    //Call the GameOver function of GameManager.
+                    GameManager.instance.GameOver();
+                }
+            }
+
+
+
+            //////////////////////////
+
+        }
+
+
+        //OnCantMove is called if Enemy attempts to move into a space occupied by a Player, it overrides the OnCantMove function of MovingObject 
+        //and takes a generic parameter T which we use to pass in the component we expect to encounter, in this case Player
+        protected override void OnCantMove <T> (T component)
 		{
 			//Declare hitPlayer and set it to equal the encountered component.
 			Player hitPlayer = component as Player;

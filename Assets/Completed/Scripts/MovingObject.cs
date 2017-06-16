@@ -27,11 +27,39 @@ namespace Completed
 			//By storing the reciprocal of the move time we can use it by multiplying instead of dividing, this is more efficient.
 			inverseMoveTime = 1f / moveTime;
 		}
-		
-		
-		//Move returns true if it is able to move and false if not. 
-		//Move takes parameters for x direction, y direction and a RaycastHit2D to check collision.
-		protected bool Move (int xDir, int yDir, out RaycastHit2D hit)
+
+
+
+        protected bool checkMove(int xDir, int yDir, out RaycastHit2D hit)
+        {
+            //Store start position to move from, based on objects current transform position.
+            Vector2 start = transform.position;
+
+            // Calculate end position based on the direction parameters passed in when calling Move.
+            Vector2 end = start + new Vector2(xDir, yDir);
+
+            //Disable the boxCollider so that linecast doesn't hit this object's own collider.
+            boxCollider.enabled = false;
+
+            //Cast a line from start point to end point checking collision on blockingLayer.
+            hit = Physics2D.Linecast(start, end, blockingLayer);
+
+            //Re-enable boxCollider after linecast
+            boxCollider.enabled = true;
+
+            //Check if anything was hit
+            if (hit.transform == null)
+            {
+                return true; //can see the player because there is no bushes;
+            }
+
+            return false; //can't see the player
+        }
+
+
+        //Move returns true if it is able to move and false if not. 
+        //Move takes parameters for x direction, y direction and a RaycastHit2D to check collision.
+        protected bool Move (int xDir, int yDir, out RaycastHit2D hit)
 		{
 			//Store start position to move from, based on objects current transform position.
 			Vector2 start = transform.position;
